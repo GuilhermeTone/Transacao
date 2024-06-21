@@ -13,11 +13,9 @@ class EmailService
     public function send_email(int $idTransaction)
     {
         try {
-            $client = new Client();
-            $response = $client->request('GET', 'https://run.mocky.io/v3/3708ee60-f48f-40a7-893d-b96292d7ae0b');
-            $body = $response->getBody();
-            $json = json_decode($body, true);
-            Transactions::where('id', $idTransaction)->update(['email_date' =>  date::now()]);
+            $json = [
+                'message' => 'Email Enviado com sucesso',
+            ];
 
             return $json;
         } catch (\Throwable $th) {

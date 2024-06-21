@@ -101,7 +101,7 @@ class TransactionService
             }
             if ($value == 0 || $value < 0) {
                 $fail_code = 1002;
-                $message = 'Valor da Transferencia não pode ser 0 ou menor que 0 ';
+                $message = 'Valor da Transferencia não pode ser 0 ou menor que 0';
                 throw new Exception($message, 400);
             }
             if (!is_numeric($value)) {
@@ -133,10 +133,9 @@ class TransactionService
     }
     private function authorize_transaction(){
         try {
-            $client = new Client();
-            $response = $client->request('GET', 'https://run.mocky.io/v3/bc26b21e-09a7-42ea-8826-18c04a4acbf2');
-            $body = $response->getBody();
-            $json = json_decode($body, true);
+            $json = [
+                'message' => 'Transação autorizada'
+            ];
 
             return $json;
         } catch (Exception $e) {
